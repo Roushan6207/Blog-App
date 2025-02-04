@@ -16,12 +16,12 @@ exports.createComment =async (req,res) => {
     });
 
     //save the new comment into the database..
-    const savedComment= await comment.save();
+    const savedComment= await comment.save();  // alternte of create function
 
     // find the post Id,add the new comment to its comments array
     const updatedPost=await Post.findByIdAndUpdate(post,{$push:{comments:savedComment._id}},{new:true} )
-                    //   .populate("comments")// populate the comments array with comment documents..
-                    //   .exec();
+                     //.populate("comments")// populate the comments array with comment documents..
+                     //.exec();
     
         res.json({
             post:updatedPost,
